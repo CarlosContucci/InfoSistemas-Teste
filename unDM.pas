@@ -52,6 +52,7 @@ type
     { Public declarations }
     procedure EnviarDados;
     function ValidaCPF: boolean;
+    function ValidaEmail(const Value: string): Boolean;
     function ValidaCamposObrigatorios:boolean;
   end;
 
@@ -79,6 +80,39 @@ begin
          exit;
       end;
    end;
+end;
+
+function TDM.ValidaEmail(const Value: string): Boolean;
+   // verifica se é um e-mail válido
+   // true se é valido
+   // false se NÃO é válido
+   // função retirada da internet, validada e adaptada por Carlos Contucci em 01/11/2021
+   function CheckAllowed(const s: string): Boolean;
+   var
+      i: Integer;
+   begin
+      Result := False;
+      for i := 1 to Length(s) do
+         if not(s[i] in ['a' .. 'z', 'A' .. 'Z', '0' .. '9', '_', '-', '.']) then
+      Exit;
+      Result := true;
+  end;
+var
+  i: Integer;
+  NamePart, ServerPart: string;
+begin
+  Result := False;
+  i := Pos('@', Value);
+  if i = 0 then
+    Exit;
+  NamePart := Copy(Value, 1, i - 1);
+  ServerPart := Copy(Value, i + 1, Length(Value));
+  if (Length(NamePart) = 0) or ((Length(ServerPart) < 5)) then
+    Exit;
+  i := Pos('.', ServerPart);
+  if (i = 0) or (i > (Length(ServerPart) - 2)) then
+    Exit;
+  Result := CheckAllowed(NamePart) and CheckAllowed(ServerPart);
 end;
 
 function TDM.ValidaCPF: boolean;
@@ -324,18 +358,27 @@ begin
    // e retornar os dados de endereço para seus respectivos campos
    // foi usada a ferramenta rest debugger para facilitar a criação dos componentes
 
-   rqCEP.params.ParameterByName('CEP').value := text;
-   rqCEP.execute;
-
+   // busca CEP na API
+   // verifica se o DS está em modo de edição o inserção para requisitar a API
+   // desnecessariamente
    if dsCadCliente.State in [dsEdit, dsInsert] then begin
-      dsCadClienteLogradouro.AsString  :=  tbCEP.FieldByName('logradouro').AsString;
-      dsCadClienteComplemento.AsString :=  tbCEP.FieldByName('complemento').AsString;
-      dsCadClienteBairro.AsString      :=  tbCEP.FieldByName('bairro').AsString;
-      dsCadClienteCidade.AsString      :=  tbCEP.FieldByName('localidade').AsString;
-      dsCadClienteEstado.AsString      :=  tbCEP.FieldByName('uf').AsString;
-      dsCadClienteDDD.AsString         :=  tbCEP.FieldByName('ddd').AsString;
-   end;
+      rqCEP.params.ParameterByName('CEP').value := text;
+      rqCEP.execute;
 
+      // Verifica se algum dado foi encontrado
+      if (tbCEP.FindField('logradouro') <> nil) then begin
+         dsCadClienteLogradouro.AsString  :=  tbCEP.FieldByName('logradouro').AsString;
+         dsCadClienteComplemento.AsString :=  tbCEP.FieldByName('complemento').AsString;
+         dsCadClienteBairro.AsString      :=  tbCEP.FieldByName('bairro').AsString;
+         dsCadClienteCidade.AsString      :=  tbCEP.FieldByName('localidade').AsString;
+         dsCadClienteEstado.AsString      :=  tbCEP.FieldByName('uf').AsString;
+         dsCadClienteDDD.AsString         :=  tbCEP.FieldByName('ddd').AsString;
+      end else begin
+         // caso não não tenha sido encontradas informações, informa o usuário,
+         // mas não impede a continuidade do cadastro.
+         showmessage('CEP não encontrado na base de dados. Por favor verifique se a informação está correta.');
+      end;
+   end;
    Sender.Value := text;
 end;
 

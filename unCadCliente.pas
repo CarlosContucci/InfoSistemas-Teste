@@ -74,6 +74,7 @@ type
     procedure btExcluirClick(Sender: TObject);
     procedure BotoesPreparar(Sender: TObject);
     procedure edCPFExit(Sender: TObject);
+    procedure edEmailExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -103,9 +104,9 @@ begin
       btSalvar.Enabled     := false;
       btCancelar.Enabled   := false;
 
-      if scCadCliente.DataSet.IsEmpty then
-         btExcluir.Enabled := false
-      else btExcluir.Enabled := true;
+      if (scCadCliente.DataSet.RecordCount > 0) then
+         btExcluir.Enabled := true
+      else btExcluir.Enabled := false;
    end;
 end;
 
@@ -146,6 +147,17 @@ begin
       if not DM.ValidaCPF then begin
          showmessage('CPF inválido');
          edCPF.SetFocus;
+      end;
+   end;
+end;
+
+procedure TfrCadCliente.edEmailExit(Sender: TObject);
+begin
+   // verifica se o email é valido
+   if (edEmail.Text <> '') then begin
+      if not DM.ValidaEmail(edEmail.Text) then begin
+         showmessage('Email inválido');
+         edEmail.SetFocus;
       end;
    end;
 end;

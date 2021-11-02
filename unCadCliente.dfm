@@ -25,10 +25,8 @@ object frCadCliente: TfrCadCliente
     ActivePage = tbDados
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 444
     object tbLista: TTabSheet
       Caption = 'Listagem'
-      ExplicitHeight = 414
       object grCadCliente: TDBGrid
         Left = 0
         Top = 0
@@ -74,7 +72,6 @@ object frCadCliente: TfrCadCliente
     object tbDados: TTabSheet
       Caption = 'Dados'
       ImageIndex = 1
-      ExplicitHeight = 414
       object pnCadCliente: TPanel
         Left = 0
         Top = 0
@@ -83,7 +80,6 @@ object frCadCliente: TfrCadCliente
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 0
-        ExplicitHeight = 414
         object Label1: TLabel
           Left = 16
           Top = 16
@@ -257,6 +253,7 @@ object frCadCliente: TfrCadCliente
           DataField = 'Email'
           DataSource = scCadCliente
           TabOrder = 13
+          OnExit = edEmailExit
         end
         object edCEP: TDBEdit
           Left = 16
