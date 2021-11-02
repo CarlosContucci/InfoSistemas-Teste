@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/10/31 20:14:26.000.572,=C:\Users\worker\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2021/10/31 20:17:01.000.199,C:\Users\worker\Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\projs\CadCliente\fonte\unCadCliente.dfm</Transaction>
+    <Transaction>2021/10/31 20:17:01.000.199,C:\Users\worker\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\projs\CadCliente\fonte\unCadCliente.pas</Transaction>
+    <Transaction>2021/10/31 20:17:29.000.325,C:\Users\worker\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\projs\CadCliente\fonte\pjCadCliente.dproj</Transaction>
+    <Transaction>2021/10/31 21:57:21.000.044,=D:\projs\CadCliente\fonte\Unit1.pas</Transaction>
+    <Transaction>2021/10/31 21:57:56.000.520,D:\projs\CadCliente\fonte\Unit1.pas=D:\projs\CadCliente\fonte\unDMCliente.pas</Transaction>
+    <Transaction>2021/10/31 21:57:56.000.520,D:\projs\CadCliente\fonte\Unit1.dfm=D:\projs\CadCliente\fonte\unDMCliente.dfm</Transaction>
+    <Transaction>2021/10/31 22:02:27.000.933,=D:\projs\CadCliente\fonte\Unit1.pas</Transaction>
+    <Transaction>2021/10/31 22:03:26.000.455,D:\projs\CadCliente\fonte\unDMCliente.pas=</Transaction>
+    <Transaction>2021/10/31 22:03:45.000.634,D:\projs\CadCliente\fonte\Unit1.pas=D:\projs\CadCliente\fonte\unDM.pas</Transaction>
+    <Transaction>2021/10/31 22:03:45.000.634,D:\projs\CadCliente\fonte\Unit1.dfm=D:\projs\CadCliente\fonte\unDM.dfm</Transaction>
+  </Transactions>
+</BorlandProject>
