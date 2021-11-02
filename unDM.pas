@@ -226,7 +226,7 @@ begin
     IdSMTP.Port                        := 465;
     IdSMTP.Host                        := 'email-ssl.com.br';
     IdSMTP.Username                    := 'noreply-teste@gruporevenda.com.br';
-    IdSMTP.Password                    := 'hg@#$%jsdg64jJJJ.';
+    IdSMTP.Password                    := 'hg@#$%jsdg64jJJJ.*';
 
     // Configuração da mensagem (TIdMessage)
     IdMessage.From.Address             := 'noreply-teste@gruporevenda.com.br';
